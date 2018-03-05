@@ -1,0 +1,10 @@
+%h1.display-4 Manage Shows
+
+%form(action='/manage' method='post')
+  - @shows.each do |show|
+    .form-check
+      %input.form-check-input(type='checkbox' value=''){id: show.id}
+      %label.form-check-label{for: show.id}= show.name
+      
+  .form-group
+    %input#submit.btn.btn-info(type="submit" name="submit" value="Update Shows")

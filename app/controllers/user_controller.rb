@@ -26,4 +26,9 @@ class UserController < ApplicationController
     session.clear
     redirect to('/login')
   end
+
+  get '/manage' do
+    @shows = Show.all
+    haml :'users/manage_shows'
+  end
 end
