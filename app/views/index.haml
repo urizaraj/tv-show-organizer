@@ -1,6 +1,7 @@
-%h1.display-4 Hello, world.
+%h1.display-4 TV Show Organizer
 
 %br
 
-%a.btn.btn-info(href="/login") Log In
-%a.btn.btn-info(href="/signup") Sign Up
+- unless logged_in?
+    %a.btn.btn-info(href="/login") Log In
+    %a.btn.btn-info(href="/signup") Sign Up
