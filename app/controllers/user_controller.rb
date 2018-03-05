@@ -28,7 +28,14 @@ class UserController < ApplicationController
   end
 
   get '/manage' do
+    @user = current_user
     @shows = Show.all
     haml :'users/manage_shows'
+  end
+
+  post '/manage' do
+    user = current_user
+    user.update(params[:user])
+    redirect to '/'
   end
 end
