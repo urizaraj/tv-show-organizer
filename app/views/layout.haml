@@ -2,18 +2,19 @@
 %html
   %head
     %title= @title
-    -# %link(rel="stylesheet" href="/style.css")
     %link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
   
   %body
-    .navbar.navbar-expand-lg.navbar-dark.bg-info.mb-3
+    .navbar.navbar-expand-lg.navbar-dark.bg-info.mb-3.justify-content-center
       %ul.navbar-nav
         %li.nav-item
           %a.nav-link(href="/") Home
-      - if logged_in?
-        .navbar-text= current_user.username
-      - else
-        %ul.navbar-nav
+        - if logged_in?
+          %li.nav-item
+            %a.nav-link(href="/")= current_user.username
+          %li.nav-item
+            %a.nav-link(href="/logout") Log Out
+        - else
           %li.nav-item
             %a.nav-link(href="/login") Log In
           %li.nav-item

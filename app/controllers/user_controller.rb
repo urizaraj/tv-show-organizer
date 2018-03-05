@@ -21,4 +21,9 @@ class UserController < ApplicationController
     flash[:message] = "Welcome, #{user.username}."
     redirect to '/'
   end
+
+  get '/logout' do
+    session.clear
+    redirect to('/login')
+  end
 end
