@@ -1,18 +1,22 @@
 class UserController < ApplicationController
   get '/signup' do
+    redirect to '/' if logged_in?
     haml :'users/create_user'
   end
 
   post '/signup' do
+    redirect to '/' if logged_in?
     User.create(params[:user])
     redirect to '/login'
   end
 
   get '/login' do
+    redirect to '/' if logged_in?
     haml :'users/login'
   end
 
   post '/login' do
+    redirect to '/' if logged_in?
     user = User.find_by(username: params[:username])
 
     redirect to('/login') unless user && user.authenticate(params[:password])
@@ -28,12 +32,14 @@ class UserController < ApplicationController
   end
 
   get '/manage' do
+    redirect to '/login' unless logged_in?
     @user = current_user
     @shows = Show.all.order(:name)
     haml :'users/manage_shows'
   end
 
   post '/manage' do
+    redirect to '/login' unless logged_in?
     user = current_user
     user.update(params[:user])
     redirect to '/'
@@ -41,6 +47,7 @@ class UserController < ApplicationController
 
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
+    redirect to '/users' unless @user
     @shows = @user.shows.order(:name)
     haml :'users/user_detail'
   end
