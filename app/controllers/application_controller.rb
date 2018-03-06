@@ -9,6 +9,7 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
     @title = 'Index'
+    @shows = Show.select('shows.name, shows.id, count(users.id) as users_count').joins(:users).group('shows.id').order('users_count desc').limit(10)
     haml :index
   end
 
