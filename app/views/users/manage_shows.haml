@@ -1,10 +1,19 @@
 %h1.display-4 Manage Shows
 
+%br
+
 %form(action='/manage' method='post')
-  - @shows.each do |show|
-    .form-check
-      %input.form-check-input(type='checkbox' name="user[show_ids][]"){id: show.id, checked: @user.shows.include?(show), value: show.id}
-      %label.form-check-label{for: show.id}= show.name
+  .form-row.justify-content-center
+    - @shows.each_with_index do |show, i|
+      .col-auto
+        .card.mb-2
+          %label.form-check-label{for: show.id}
+            .card-body
+              .form-check
+                %input.form-check-input(type='checkbox' name="user[show_ids][]"){id: show.id, checked: @user.shows.include?(show), value: show.id}
+                .show= show.name
+
+  %br
 
   .form-group
     %input#submit.btn.btn-emerald(type="submit" name="submit" value="Update Shows")
