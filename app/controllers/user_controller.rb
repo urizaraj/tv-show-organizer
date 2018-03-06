@@ -68,16 +68,14 @@ class UserController < ApplicationController
     def valid_user_info?(params)
       if params.values.any?(&:empty?)
         flash[:message] = 'Please fill out all fields'
-        false
       elsif !/[A-Za-z0-9\-_]+/.match?(params[:username])
         flash[:message] = 'Username can only contain A-Z, a-z, 0-9, _ and -'
-        false
       elsif User.find_by(username: params[:username])
         flash[:message] = 'Username already taken.'
-        false
       else
-        true
+        return true
       end
+      false
     end
   end
 end
