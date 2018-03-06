@@ -6,6 +6,7 @@ class UserController < ApplicationController
 
   post '/signup' do
     redirect to '/' if logged_in?
+    redirect back unless valid_user_info?(params[:user])
     User.create(params[:user])
     redirect to '/login'
   end
@@ -19,10 +20,7 @@ class UserController < ApplicationController
     redirect to '/' if logged_in?
     user = User.find_by(username: params[:username])
 
-    unless user && user.authenticate(params[:password])
-      flash[:message] = 'Invalid username or password.'
-      redirect to('/login')
-    end
+    redirect to('/login') unless valid_user?(user, params)
 
     session[:user_id] = user.id
     flash[:message] = "Welcome, #{user.username}!"
@@ -58,5 +56,28 @@ class UserController < ApplicationController
   get '/users' do
     @users = User.all.order(:username)
     haml :'users/all_users'
+  end
+
+  helpers do
+    def valid_user?(user, params)
+      valid = user && user.authenticate(params[:password])
+      flash[:message] = 'Invalid username or password.' unless valid
+      valid
+    end
+
+    def valid_user_info?(params)
+      if params.values.any?(&:empty?)
+        flash[:message] = 'Please fill out all fields'
+        false
+      elsif !/[A-Za-z0-9\-_]+/.match?(params[:username])
+        flash[:message] = 'Username can only contain A-Z, a-z, 0-9, _ and -'
+        false
+      elsif User.find_by(username: params[:username])
+        flash[:message] = 'Username already taken.'
+        false
+      else
+        true
+      end
+    end
   end
 end
