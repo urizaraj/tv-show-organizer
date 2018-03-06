@@ -1,0 +1,15 @@
+%h1.display-4 Users
+
+%br
+
+.row
+  - @users.each do |user|
+    .col-3
+      %a(href="/users/#{user.slug}")
+        .card.mb-2
+          .card-body
+            .row
+              .col-auto
+                %strong= user.username
+              .col-auto.ml-auto
+                .text-muted #{user.shows.size} shows
