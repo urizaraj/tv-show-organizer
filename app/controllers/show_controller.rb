@@ -23,6 +23,7 @@ class ShowController < ApplicationController
 
   get '/shows/:id' do
     @show = Show.find(params[:id])
+    redirect to '/shows' unless @show
     @users = @show.users
     haml :'shows/show_detail'
   end
