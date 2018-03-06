@@ -5,29 +5,20 @@
     %link(rel="stylesheet" href="/style.css")
 
   %body
-    .navbar.navbar-expand-lg.navbar-dark.bg-emerald.mb-3.justify-content-center
-      %ul.navbar-nav
-        %li.nav-item
-          %a.nav-link(href="/") Home
-        %li.nav-item
-          %a.nav-link(href="/users") Users
-        %li.nav-item.mr-5
-          %a.nav-link(href="/shows") Shows
+    %nav.navbar.navbar-expand-lg.navbar-dark.bg-emerald.mb-3.justify-content-center
+      .navbar-nav
+        %a.nav-item.nav-link(href="/") Home
+        %a.nav-item.nav-link(href="/users") Users
+        %a.nav-link(href="/shows") Shows
         - if logged_in?
-          %li.nav-item
-            %a.nav-link(href="/users/#{current_user.slug}")= current_user.username
-          %li.nav-item
-            %a.nav-link(href="/manage") Manage Shows
-          %li.nav-item
-            %a.nav-link(href="/shows/new") New Show
-          %li.nav-item
-            %a.nav-link(href="/logout") Log Out
+          %a.nav-item.nav-link(href="/users/#{current_user.slug}")= current_user.username
+          %a.nav-item.nav-link(href="/manage") Manage Shows
+          %a.nav-item.nav-link(href="/shows/new") New Show
+          %a.nav-item.nav-link(href="/logout") Log Out
 
         - else
-          %li.nav-item
-            %a.nav-link(href="/login") Log In
-          %li.nav-item
-            %a.nav-link(href="/signup") Sign Up
+          %a.nav-item.nav-link(href="/login") Log In
+          %a.nav-item.nav-link(href="/signup") Sign Up
 
     .container
       - if flash.has?(:message)
