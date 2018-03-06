@@ -30,6 +30,14 @@
             %a.nav-link(href="/signup") Sign Up
 
     .container
+      - if flash.has?(:message)
+        .row
+          .col-auto
+            .alert.alert-eton.alert-dismissible.mb-4
+              %button.close(type="button" data-dismiss="alert")
+                %i.far.fa-times-circle
+              %h1.display-4= flash[:message]
+
       = yield
 
     %script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous")
