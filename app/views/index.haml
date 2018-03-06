@@ -2,6 +2,14 @@
 
 %br
 
+- if flash.has?(:message)
+  .row
+    .col-auto
+      .alert.alert-eton.alert-dismissible.fade.show
+        %button.close(type="button" data-dismiss="alert")
+          %i.fas.fa-times
+        %h1.display-4= flash[:message]
+
 - unless logged_in?
-    %a.btn.btn-info(href="/login") Log In
-    %a.btn.btn-info(href="/signup") Sign Up
+  %a.btn.btn-emerald(href="/login") Log In
+  %a.btn.btn-emerald(href="/signup") Sign Up
