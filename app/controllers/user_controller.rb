@@ -18,7 +18,7 @@ class UserController < ApplicationController
     redirect to('/login') unless user && user.authenticate(params[:password])
 
     session[:user_id] = user.id
-    flash[:message] = "Welcome, #{user.username}."
+    flash[:message] = "Welcome, #{user.username}!"
     redirect to '/'
   end
 
