@@ -38,4 +38,10 @@ class UserController < ApplicationController
     user.update(params[:user])
     redirect to '/'
   end
+
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    @shows = @user.shows.order(:name)
+    haml :'users/user_detail'
+  end
 end

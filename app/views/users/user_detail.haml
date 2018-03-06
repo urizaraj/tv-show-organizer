@@ -1,0 +1,9 @@
+%h1.display-4= @user.username
+
+%h1 Shows
+.row
+  - @shows.each_with_index do |show, i|
+    .col-4
+      %h3= show.name
+    - if ((i + 1) % 3).zero?
+      .w-100
