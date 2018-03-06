@@ -1,0 +1,15 @@
+%h1.display-4 All Shows
+
+%br
+
+.row
+  - @shows.each do |show|
+    .col-4.mb-2
+      %a(href="/shows/#{show.id}")
+        .card
+          .card-body
+            .row
+              .col
+                %strong= show.name
+              .col-auto.align-self-end
+                %span.text-right.text-muted= show.year
