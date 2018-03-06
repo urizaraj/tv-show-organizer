@@ -5,6 +5,7 @@ class ShowController < ApplicationController
   end
 
   get '/shows/new' do
+    redirect to '/login' unless logged_in?
     haml :'shows/create_show'
   end
 
