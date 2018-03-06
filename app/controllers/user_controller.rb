@@ -19,7 +19,10 @@ class UserController < ApplicationController
     redirect to '/' if logged_in?
     user = User.find_by(username: params[:username])
 
-    redirect to('/login') unless user && user.authenticate(params[:password])
+    unless user && user.authenticate(params[:password])
+      flash[:message] = 'Invalid username or password.'
+      redirect to('/login')
+    end
 
     session[:user_id] = user.id
     flash[:message] = "Welcome, #{user.username}!"
