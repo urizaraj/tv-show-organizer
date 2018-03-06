@@ -29,7 +29,7 @@ class UserController < ApplicationController
 
   get '/manage' do
     @user = current_user
-    @shows = Show.all
+    @shows = Show.all.order(:name)
     haml :'users/manage_shows'
   end
 
