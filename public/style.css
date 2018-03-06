@@ -6835,4 +6835,14 @@ a.text-eggshell:hover, a.text-eggshell:focus {
   color: #1a936f;
   font-weight: bolder; }
 
+a {
+  text-decoration: none !important; }
+
+a:link,
+a:visited {
+  color: #114b5f; }
+
+a:hover {
+  color: #1a936f; }
+
 /*# sourceMappingURL=style.css.map */

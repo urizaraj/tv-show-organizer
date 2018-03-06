@@ -20,3 +20,16 @@ $theme-colors: (
     color: $emerald;
     font-weight: bolder;
 }
+
+a {
+    text-decoration: none !important;
+}
+
+a:link,
+a:visited {
+    color: $midnight;
+}
+
+a:hover {
+    color: $emerald;
+}
