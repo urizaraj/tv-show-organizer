@@ -10,6 +10,7 @@ class ShowController < ApplicationController
   end
 
   post '/shows/new' do
+    redirect back unless valid_show_data?(params[:show])
     show = Show.create(params[:show])
 
     redirect to '/' unless params[:toadd]
@@ -26,5 +27,18 @@ class ShowController < ApplicationController
     redirect to '/shows' unless @show
     @users = @show.users
     haml :'shows/show_detail'
+  end
+
+  helpers do
+    def valid_show_data?(params)
+      if params.values.any?(&:empty?)
+        flash[:message] = 'Please fill out all fields'
+      elsif !(1940..2300).include?(params[:year].to_i)
+        flash[:message] = 'Please enter a valid year'
+      else
+        return true
+      end
+      false
+    end
   end
 end
