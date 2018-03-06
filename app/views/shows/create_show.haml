@@ -1,0 +1,21 @@
+%h1.display-4 Add A Show
+
+%br
+
+%form(action="/shows/new" method="post")
+  .form-row
+    .col-5
+      %input#name.form-control(type="text" name="show[name]" placeholder="Show Name")
+    .col-3
+      %input#year.form-control(type="number" name="show[year]" placeholder="Year" min=1940 max=2200)
+
+  %br
+
+  .form-check
+    %input#add.form-check-input(type="checkbox" name="toadd" checked)
+    %label.form-check-label(for="add") Add to shows?
+
+  %br
+
+  .form-group
+    %input#submit.btn.btn-emerald(type="submit" name="submit" value="Create Show")
