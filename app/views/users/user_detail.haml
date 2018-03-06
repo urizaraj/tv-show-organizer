@@ -1,9 +1,20 @@
 %h1.display-4= @user.username
 
-%h1 Shows
+%br
+
+%h1.text-emerald Shows
+
+%br
+
 .row
   - @shows.each_with_index do |show, i|
     .col-4
-      %h3= show.name
+      .card
+        .card-body
+          .row
+            .col
+              %strong= show.name
+            .col-auto.align-self-end
+              %span.text-right= show.year
     - if ((i + 1) % 3).zero?
-      .w-100
+      .w-100.mb-2
