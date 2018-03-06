@@ -44,4 +44,9 @@ class UserController < ApplicationController
     @shows = @user.shows.order(:name)
     haml :'users/user_detail'
   end
+
+  get '/users' do
+    @users = User.all.order(:username)
+    haml :'users/all_users'
+  end
 end
