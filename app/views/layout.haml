@@ -9,11 +9,15 @@
       %ul.navbar-nav
         %li.nav-item
           %a.nav-link(href="/") Home
+        %li.nav-item
+          %a.nav-link(href="/users") Users
         - if logged_in?
           %li.nav-item
             %a.nav-link(href="/users/#{current_user.slug}")= current_user.username
           %li.nav-item
             %a.nav-link(href="/manage") Manage Shows
+          %li.nav-item
+            %a.nav-link(href="/shows/new") New Show
           %li.nav-item
             %a.nav-link(href="/logout") Log Out
 
