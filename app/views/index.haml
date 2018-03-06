@@ -1,7 +1,3 @@
-%h1.display-4 TV Show Organizer
-
-%br
-
 - if flash.has?(:message)
   .row
     .col-auto
@@ -9,7 +5,28 @@
         %button.close(type="button" data-dismiss="alert")
           %i.far.fa-times-circle
         %h1.display-4= flash[:message]
+  %br
+
+%h1.display-4 TV Show Organizer
+
+%br
 
 - unless logged_in?
   %a.btn.btn-emerald(href="/login") Log In
   %a.btn.btn-emerald(href="/signup") Sign Up
+
+  %br
+
+%h1 Popular Shows:
+%br
+.row.justify-content-center
+  - @shows.each do |show|
+    .col-auto
+      %a(href="/shows/#{show.id}")
+        .card.mb-2
+          .card-body
+            .row
+              .col
+                %strong= show.name
+              .col-auto.ml-auto
+                .text-muted #{show.users_count} users
