@@ -6831,5 +6831,8 @@ a.text-eggshell:hover, a.text-eggshell:focus {
   .table-bordered th,
   .table-bordered td {
     border: 1px solid #ddd !important; } }
+:checked + .show {
+  color: #1a936f;
+  font-weight: bolder; }
 
 /*# sourceMappingURL=style.css.map */

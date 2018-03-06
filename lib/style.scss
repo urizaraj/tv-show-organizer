@@ -15,3 +15,8 @@ $theme-colors: (
 );
 
 @import "bootstrap/scss/bootstrap";
+
+:checked + .show {
+    color: $emerald;
+    font-weight: bolder;
+}
