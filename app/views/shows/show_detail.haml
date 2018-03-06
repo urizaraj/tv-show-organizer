@@ -1,0 +1,17 @@
+%h1.display-4
+  = @show.name
+  %span.ml-3.text-eton= @show.year
+
+%br
+
+%h1.text-emerald Users
+
+%br
+
+.row
+  - @users.each do |user|
+    .col-auto
+      %a(href="/users/#{user.slug}")
+        .card.mb-2
+          .card-body
+            %strong= user.username
