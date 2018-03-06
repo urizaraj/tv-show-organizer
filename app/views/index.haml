@@ -5,9 +5,9 @@
 - if flash.has?(:message)
   .row
     .col-auto
-      .alert.alert-eton.alert-dismissible.fade.show
+      .alert.alert-eton.alert-dismissible
         %button.close(type="button" data-dismiss="alert")
-          %i.fas.fa-times
+          %i.far.fa-times-circle
         %h1.display-4= flash[:message]
 
 - unless logged_in?
