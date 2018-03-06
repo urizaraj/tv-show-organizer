@@ -1,0 +1,17 @@
+$enable-rounded: false;
+
+$midnight: rgba(17, 75, 95, 1);
+$emerald: rgba(26, 147, 111, 1);
+$eton: rgba(136, 212, 152, 1);
+$pastel: rgba(198, 218, 191, 1);
+$eggshell: rgba(243, 233, 210, 1);
+
+$theme-colors: (
+    "midnight": $midnight,
+    "emerald": $emerald,
+    "eton": $eton,
+    "pastel": $pastel,
+    "eggshell": $eggshell
+);
+
+@import "bootstrap/scss/bootstrap";
