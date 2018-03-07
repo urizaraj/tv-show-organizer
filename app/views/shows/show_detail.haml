@@ -4,6 +4,39 @@
 
 %br
 
+- unless @show.description
+  %p 
+    %em.text-muted This show has no description.
+- else
+  %p
+    %em= @show.description
+
+%br
+
+- if logged_in?
+  .row
+    .col-auto
+      %form(action="/shows/#{@show.id}/edit")
+        %button.btn.btn-outline-midnight(type="submit")
+          %i.fas.fa-cog.mr-1
+          Edit Show
+          
+    .col-auto
+      %form(action="/shows/#{@show.id}/add_user" method="post")
+        %input(type="hidden" name="_method" value="patch")
+        %input(type="hidden" name="user_id" value="current_user.id")
+        %button.btn.btn-outline-midnight(type="submit")
+          %i.fas.fa-plus.mr-1
+          Add to Shows
+
+    .col-auto
+      %form(action="/shows/#{@show.id}/delete" method="post")
+        %input(type="hidden" name="_method" value="delete")
+        %button.btn.btn-outline-midnight(type="submit")
+          %i.fas.fa-trash-alt.mr-1
+          Delete Show
+  %br
+
 %h1.text-emerald Users
 
 %br
