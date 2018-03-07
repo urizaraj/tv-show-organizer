@@ -4,10 +4,14 @@
 
 %form(action="/shows/new" method="post")
   .form-row
-    .col-5
+    .col-md-5.mb-2
       %input#name.form-control(type="text" name="show[name]" placeholder="Show Name")
-    .col-3
+    .col-md-3
       %input#year.form-control(type="number" name="show[year]" placeholder="Year" min=1940 max=2200)
+
+  .form-row
+    .col-md-8
+      %input#year.form-control(type="text" name="show[description]" placeholder="Add a description..")
 
   %br
 
