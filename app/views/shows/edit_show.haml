@@ -1,7 +1,5 @@
 %h1.display-4 Edit #{@show.name}
 
-%br
-
 %form(action="/shows/#{@show.id}/edit" method="post")
   %input(type="hidden" name="_method" value="patch")
   .form-row

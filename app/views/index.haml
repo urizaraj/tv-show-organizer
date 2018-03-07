@@ -1,18 +1,14 @@
 %h1.display-4 TV Show Organizer
 
-%br
-
 - unless logged_in?
-  %p
+  %p.description
     %a(href="/login") Log In
     or
     %a(href="/signup") Sign Up
     to get started.
 
-  %br
-
 %h1.text-emerald Popular Shows:
-%br
+
 .row.justify-content-center
   - @shows.each do |show|
     .col-auto
