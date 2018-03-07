@@ -29,10 +29,39 @@ class ShowController < ApplicationController
     haml :'shows/show_detail'
   end
 
+  get '/shows/:id/edit' do |id|
+    @show = Show.find(id)
+    redirect to '/shows' unless @show
+    haml :'shows/edit_show'
+  end
+
+  patch '/shows/:id/edit' do |id|
+    show = Show.find(id)
+    redirect to '/shows' unless show
+    redirect back unless valid_show_data?(params[:show])
+    show.update(params[:show])
+    redirect to "/shows/#{id}"
+  end
+
+  patch '/shows/:id/add_user' do |id|
+    show = Show.find(id)
+    redirect to '/shows' unless show
+    show.users << User.find(params[:user_id])
+    show.save
+    redirect back
+  end
+
+  delete '/shows/:id/delete' do |id|
+    show = Show.find(id)
+    redirect to '/shows' unless show
+    show.destroy
+    redirect to '/shows'
+  end
+
   helpers do
     def valid_show_data?(params)
-      if params.values.any?(&:empty?)
-        flash[:message] = 'Please fill out all fields'
+      if params[:name].empty?
+        flash[:message] = 'Please enter a name.'
       elsif !(1940..2300).include?(params[:year].to_i)
         flash[:message] = 'Please enter a valid year'
       else
