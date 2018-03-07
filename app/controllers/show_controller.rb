@@ -47,7 +47,13 @@ class ShowController < ApplicationController
     show = Show.find(id)
     redirect to '/shows' unless show
     show.users << User.find(params[:user_id])
-    show.save
+    redirect back
+  end
+
+  patch '/shows/:id/remove_user' do |id|
+    show = Show.find(id)
+    redirect to '/shows' unless show
+    show.users.delete(User.find(params[:user_id]))
     redirect back
   end
 
