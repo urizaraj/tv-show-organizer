@@ -20,11 +20,11 @@
         %button.btn.btn-outline-midnight(type="submit")
           %i.fas.fa-cog.mr-1
           Edit Show
-          
+
     .col-auto
       %form(action="/shows/#{@show.id}/add_user" method="post")
         %input(type="hidden" name="_method" value="patch")
-        %input(type="hidden" name="user_id" value="current_user.id")
+        %input(type="hidden" name="user_id" value="#{current_user.id}")
         %button.btn.btn-outline-midnight(type="submit")
           %i.fas.fa-plus.mr-1
           Add to Shows
