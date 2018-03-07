@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Hind:300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Teko:400,700");
 /*!
  * Bootstrap v4.0.0 (https://getbootstrap.com)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -60,7 +60,7 @@ article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, s
 
 body {
   margin: 0;
-  font-family: "Hind", sans-serif;
+  font-family: "Teko", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -4024,7 +4024,7 @@ button.close {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Hind", sans-serif;
+  font-family: "Teko", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -4108,7 +4108,7 @@ button.close {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Hind", sans-serif;
+  font-family: "Teko", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -6845,5 +6845,8 @@ a:visited {
 
 a:hover {
   color: #1a936f; }
+
+.alert {
+  font-size: 2rem; }
 
 /*# sourceMappingURL=style.css.map */
