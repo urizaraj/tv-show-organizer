@@ -1,0 +1,26 @@
+%h1.display-4 Edit #{@show.name}
+
+%br
+
+%form(action="/shows/#{@show.id}/edit" method="post")
+  %input(type="hidden" name="_method" value="patch")
+  .form-row
+    .col-md-5.mb-2
+      %input#name.form-control(type="text" name="show[name]" placeholder="Show Name" value="#{@show.name}"){}
+    .col-md-3
+      %input#year.form-control(type="number" name="show[year]" placeholder="Year" min=1940 max=2200 value="#{@show.year}")
+
+  .form-row
+    .col-md-8
+      %input#year.form-control(type="text" name="show[description]" placeholder="Add a description.." value="#{@show.description}")
+
+  -# %br
+
+  -# .form-check
+  -#   %input#add.form-check-input(type="checkbox" name="toadd" checked)
+  -#   %label.form-check-label(for="add") Add to shows?
+
+  %br
+
+  .form-group
+    %input#submit.btn.btn-emerald(type="submit" name="submit" value="Update Show")
