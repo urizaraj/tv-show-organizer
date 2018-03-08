@@ -21,5 +21,9 @@ class ApplicationController < Sinatra::Base
     def logged_in?
       !!session[:user_id]
     end
+
+    def watched?(show)
+      UserShow.find_by(show_id: show.id, user_id: current_user.id).watched
+    end
   end
 end

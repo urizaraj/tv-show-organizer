@@ -49,7 +49,9 @@ class UserController < ApplicationController
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     redirect to '/users' unless @user
-    @shows = @user.shows.order(:name)
+    # @shows = @user.shows.order(:name)
+    @shows = @user.user_shows.where(watched: false).map(&:show)
+    @watched_shows = @user.user_shows.where(watched: true).map(&:show)
     haml :'users/user_detail'
   end
 
