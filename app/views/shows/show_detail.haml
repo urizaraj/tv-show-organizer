@@ -2,7 +2,6 @@
   = @show.name
   %span.ml-3.text-eton= @show.year
 
-
 %p.description
   - unless @show.description
     %em.text-muted This show has no description.
@@ -19,6 +18,18 @@
             Edit Show
 
       - if current_user.shows.include?(@show)
+        .col-auto
+          %form(action="/shows/#{ @show.id }/watched" method="post")
+            %input(type="hidden" name="_method" value="patch")
+            %input(type="hidden" name="user_id" value="#{current_user.id}")
+            %button.btn.btn-outline-midnight(type="submit")
+              - if watched?(@show)
+                %i.far.fa-check-circle.mr-1
+                Watched
+              - else
+                %i.far.fa-circle.mr-1
+                Not Watched
+
         .col-auto
           %form(action="/shows/#{ @show.id }/remove_user" method="post")
             %input(type="hidden" name="_method" value="patch")

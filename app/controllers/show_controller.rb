@@ -57,6 +57,13 @@ class ShowController < ApplicationController
     redirect back
   end
 
+  patch '/shows/:id/watched' do |id|
+    show = Show.find(id)
+    redirect to '/shows' unless show
+    show.user_shows.find_by(user_id: params[:user_id]).toggle!(:watched)
+    redirect back
+  end
+
   delete '/shows/:id/delete' do |id|
     show = Show.find(id)
     redirect to '/shows' unless show
