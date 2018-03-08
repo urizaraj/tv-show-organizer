@@ -1,5 +1,4 @@
 lib/bootstrap
 .sass-cache
 
-db/schema.rb
 db/development.sqlite
