@@ -43,7 +43,7 @@ class UserController < ApplicationController
     redirect to '/login' unless logged_in?
     user = current_user
     user.update(params[:user])
-    redirect to '/'
+    redirect to "/users/#{user.slug}"
   end
 
   get '/users/:slug' do
