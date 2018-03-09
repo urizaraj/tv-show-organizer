@@ -6,8 +6,11 @@ class UserController < ApplicationController
 
   post '/signup' do
     redirect to '/' if logged_in?
-    redirect back unless valid_user_info?(params[:user])
-    User.create(params[:user])
+
+    user = User.new(params[:user])
+    redirect back unless valid_info?(user)
+    
+    user.save
     redirect to '/login'
   end
 
@@ -67,16 +70,14 @@ class UserController < ApplicationController
       valid
     end
 
-    def valid_user_info?(params)
-      if params.values.any?(&:empty?)
-        flash[:message] = 'Please fill out all fields'
-      elsif !/[A-Za-z0-9\-_]+/.match?(params[:username])
-        flash[:message] = 'Username can only contain A-Z, a-z, 0-9, _ and -'
-      elsif User.find_by(username: params[:username])
-        flash[:message] = 'Username already taken.'
-      else
-        return true
-      end
+    def valid_info?(user)
+      return true if user.valid?
+
+      message = user.errors.messages.map do |key, ar|
+        ar.map{ |value| "#{key} #{value}" }.join(', ')
+      end.join(', ') + '.'
+
+      flash[:message] = message
       false
     end
   end
