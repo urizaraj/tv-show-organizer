@@ -81,7 +81,7 @@ users = %w[
 ]
 
 users.each do |e|
-  user = User.create(username: e, email: "test@email.com", password: 'test')
+  user = User.create(username: e, email: 'test@email.com', password: 'test')
   (1..58).to_a.shuffle.take(rand(1..15)).each do |n|
     user.shows << Show.find(n)
   end
