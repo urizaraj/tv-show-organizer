@@ -13,12 +13,6 @@
 - if logged_in?
   %p
     .row.mb
-      .col-auto
-        %form(action="/shows/#{@show.id}/edit")
-          %button.btn.btn-outline-midnight(type="submit")
-            %i.fas.fa-cog.mr-1
-            Edit Show
-
       - if current_user.shows.include?(@show)
         .col-auto
           %form(action="/shows/#{ @show.id }/watched" method="post")
@@ -47,7 +41,11 @@
             %button.btn.btn-outline-midnight(type="submit")
               %i.fas.fa-plus.mr-1
               Add to Shows
-
+      .col-auto
+        %form(action="/shows/#{@show.id}/edit")
+          %button.btn.btn-outline-midnight(type="submit")
+            %i.fas.fa-cog.mr-1
+            Edit Show
       .col-auto
         %form(action="/shows/#{@show.id}/delete" method="post")
           %input(type="hidden" name="_method" value="delete")
