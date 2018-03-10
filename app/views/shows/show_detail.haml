@@ -15,9 +15,8 @@
     .row.mb
       - if current_user.shows.include?(@show)
         .col-auto
-          %form(action="/shows/#{ @show.id }/watched" method="post")
+          %form(action="/usershows/#{current_user_show(@show).id}" method="post")
             %input(type="hidden" name="_method" value="patch")
-            %input(type="hidden" name="user_id" value="#{current_user.id}")
             %button.btn.btn-outline-midnight(type="submit")
               - if watched?(@show)
                 %i.far.fa-check-circle.mr-1

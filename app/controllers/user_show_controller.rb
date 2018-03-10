@@ -6,9 +6,9 @@ class UserShowController < ApplicationController
   end
 
   patch '/usershows/:id' do |id|
-    show = Show.find(id)
-    redirect to '/shows' unless show
-    show.user_shows.find_by(user_id: params[:user_id]).toggle!(:watched)
+    user_show = UserShow.find(id)
+    redirect back unless user_show && current_user.id == user_show.user.id
+    user_show.toggle!(:watched)
     redirect back
   end
 
