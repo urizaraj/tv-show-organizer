@@ -26,6 +26,7 @@ class ShowController < ApplicationController
     @show = Show.find(params[:id])
     redirect to '/shows' unless @show
     @users = @show.users
+    @user_show = current_user_show(@show) if logged_in?
     haml :'shows/show_detail'
   end
 

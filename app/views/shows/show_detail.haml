@@ -15,7 +15,7 @@
     .row.mb
       - if current_user.shows.include?(@show)
         .col-auto
-          %form(action="/usershows/#{current_user_show(@show).id}" method="post")
+          %form(action="/usershows/#{@user_show.id}" method="post")
             %input(type="hidden" name="_method" value="patch")
             %button.btn.btn-outline-midnight(type="submit")
               - if watched?(@show)
@@ -26,7 +26,7 @@
                 Not Watched
 
         .col-auto
-          %form(action="/usershows/#{current_user_show(@show).id}" method="post")
+          %form(action="/usershows/#{@user_show.id}" method="post")
             %input(type="hidden" name="_method" value="delete")
             %button.btn.btn-outline-midnight(type="submit")
               %i.fas.fa-minus.mr-1
