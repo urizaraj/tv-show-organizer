@@ -77,7 +77,7 @@ class UserController < ApplicationController
         ar.map{ |value| "#{key} #{value}" }.join(', ')
       end.join(', ') + '.'
 
-      flash[:message] = message
+      flash[:message] = message.capitalize
       false
     end
   end
