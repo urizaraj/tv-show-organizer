@@ -9,7 +9,7 @@ class UserController < ApplicationController
 
     user = User.new(params[:user])
     redirect back unless valid_info?(user)
-    
+
     user.save
     redirect to '/login'
   end
@@ -74,7 +74,7 @@ class UserController < ApplicationController
       return true if user.valid?
 
       message = user.errors.messages.map do |key, ar|
-        ar.map{ |value| "#{key} #{value}" }.join(', ')
+        ar.map { |value| "#{key} #{value}" }.join(', ')
       end.join(', ') + '.'
 
       flash[:message] = message.capitalize
