@@ -26,9 +26,8 @@
                 Not Watched
 
         .col-auto
-          %form(action="/shows/#{ @show.id }/remove_user" method="post")
-            %input(type="hidden" name="_method" value="patch")
-            %input(type="hidden" name="user_id" value="#{current_user.id}")
+          %form(action="/usershows/#{current_user_show(@show).id}" method="post")
+            %input(type="hidden" name="_method" value="delete")
             %button.btn.btn-outline-midnight(type="submit")
               %i.fas.fa-minus.mr-1
               Remove from Shows

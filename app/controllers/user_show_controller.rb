@@ -13,9 +13,9 @@ class UserShowController < ApplicationController
   end
 
   delete '/usershows/:id' do |id|
-    show = Show.find(id)
-    redirect to '/shows' unless show
-    show.users.delete(User.find(params[:user_id]))
+    user_show = UserShow.find(id)
+    redirect back unless user_show && current_user.id == user_show.user.id
+    user_show.destroy
     redirect back
   end
 end
