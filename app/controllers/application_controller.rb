@@ -25,5 +25,9 @@ class ApplicationController < Sinatra::Base
     def watched?(show)
       UserShow.find_by(show_id: show.id, user_id: current_user.id).watched
     end
+
+    def current_user_show(show)
+      UserShow.find_by(user_id: current_user.id, show_id: show.id)
+    end
   end
 end
