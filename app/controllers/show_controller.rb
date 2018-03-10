@@ -19,7 +19,7 @@ class ShowController < ApplicationController
     user.shows << show
     user.save
 
-    redirect to '/'
+    redirect to "/shows/#{show.id}"
   end
 
   get '/shows/:id' do
