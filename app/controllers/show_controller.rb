@@ -44,27 +44,6 @@ class ShowController < ApplicationController
     redirect to "/shows/#{id}"
   end
 
-  patch '/shows/:id/add_user' do |id|
-    show = Show.find(id)
-    redirect to '/shows' unless show
-    show.users << User.find(params[:user_id])
-    redirect back
-  end
-
-  patch '/shows/:id/remove_user' do |id|
-    show = Show.find(id)
-    redirect to '/shows' unless show
-    show.users.delete(User.find(params[:user_id]))
-    redirect back
-  end
-
-  patch '/shows/:id/watched' do |id|
-    show = Show.find(id)
-    redirect to '/shows' unless show
-    show.user_shows.find_by(user_id: params[:user_id]).toggle!(:watched)
-    redirect back
-  end
-
   delete '/shows/:id/delete' do |id|
     show = Show.find(id)
     redirect to '/shows' unless show
