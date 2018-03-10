@@ -35,9 +35,9 @@
               Remove from Shows
       - else
         .col-auto
-          %form(action="/shows/#{@show.id}/add_user" method="post")
-            %input(type="hidden" name="_method" value="patch")
-            %input(type="hidden" name="user_id" value="#{current_user.id}")
+          %form(action="/usershows/new" method="post")
+            %input(type="hidden" name="usershow[user_id]" value="#{current_user.id}")
+            %input(type="hidden" name="usershow[show_id]" value="#{@show.id}")
             %button.btn.btn-outline-midnight(type="submit")
               %i.fas.fa-plus.mr-1
               Add to Shows
