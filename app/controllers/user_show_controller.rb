@@ -6,16 +6,19 @@ class UserShowController < ApplicationController
   end
 
   patch '/usershows/:id' do |id|
-    user_show = UserShow.find(id)
-    redirect back unless user_show && current_user.id == user_show.user.id
-    user_show.toggle!(:watched)
-    redirect back
+    handle_by_id(id, &:toggle_watched)
   end
 
   delete '/usershows/:id' do |id|
-    user_show = UserShow.find(id)
-    redirect back unless user_show && current_user.id == user_show.user.id
-    user_show.destroy
-    redirect back
+    handle_by_id(id, &:destroy)
+  end
+
+  helpers do
+    def handle_by_id(id)
+      user_show = UserShow.find(id)
+      redirect back unless user_show && current_user.id == user_show.user.id
+      yield(user_show)
+      redirect back
+    end
   end
 end
