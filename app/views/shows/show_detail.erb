@@ -1,0 +1,102 @@
+<% @title = "#{@show.name}" %>
+
+<h1 class="display-4">
+  <%= @show.name %>
+  <span class="ml-3 text-eton">
+    <%= @show.year %>
+  </span>
+</h1>
+
+<p class="description">
+  <% unless @show.description %>
+    <em class="text-muted">This show has no description.</em>
+  <% else %>
+    <em>
+      <%= @show.description %>
+    </em>
+  <% end %>
+</p>
+
+<% if logged_in? %>
+  <p>
+    <div class="row mb">
+      <% if current_user.shows.include?(@show) %>
+        <div class="col-auto">
+          <form action="<%= "/usershows/#{@user_show.id}" %>" method="post">
+            <input type="hidden" name="_method" value="patch"></input>
+            <button class="btn btn-outline-midnight" type="submit">
+              <% if watched?(@show) %>
+                <i class="far fa-check-circle mr-1"></i>
+                Watched
+              <% else %>
+                <i class="far fa-circle mr-1"></i>
+                Not Watched
+              <% end %>
+            </button>
+          </form>
+        </div>
+        <div class="col-auto">
+        
+          <form action="<%= "/usershows/#{@user_show.id}" %>" method="post">
+            <input type="hidden" name="_method" value="delete"></input>
+            <button class="btn btn-outline-midnight" type="submit">
+              <i class="fas fa-minus mr-1"></i>
+              Remove from Shows
+            </button>
+          </form>
+        </div>
+      <% else %>
+        <div class="col-auto">
+          <form action="/usershows/new" method="post">
+          
+            <input type="hidden" name="usershow[user_id]" value="<%= "#{current_user.id}" %>"></input>
+            <input type="hidden" name="usershow[show_id]" value="<%= "#{@show.id}" %>"></input>
+            <button class="btn btn-outline-midnight" type="submit">
+              <i class="fas fa-plus mr-1"></i>
+              Add to Shows
+            </button>
+          </form>
+        </div>
+      <% end %>
+      <div class="col-auto">
+      
+        <form action="<%= "/shows/#{@show.id}/edit" %>">
+          <button class="btn btn-outline-midnight" type="submit">
+            <i class="fas fa-cog mr-1"></i>
+            Edit Show
+          </button>
+        </form>
+      </div>
+      <div class="col-auto">
+      
+        <form action="<%= "/shows/#{@show.id}/delete" %>" method="post">
+          <input type="hidden" name="_method" value="delete"></input>
+          <button class="btn btn-outline-midnight" type="submit">
+            <i class="fas fa-trash-alt mr-1"></i>
+            Delete Show
+          </button>
+        </form>
+      </div>
+    </div>
+  </p>
+  <br/>
+<% end %>
+
+<h1 class="text-emerald">Users</h1>
+
+<div class="row">
+  <% @users.each do |user| %>
+    <div class="col-auto">
+    
+      <a href="<%= "/users/#{user.slug}" %>">
+        <div class="card mb-2">
+          <div class="card-body">
+            <strong>
+              <%= user.username %>
+            </strong>
+          </div>
+        </div>
+      </a>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,32 @@
+<h1 class="display-4">TV Show Organizer</h1>
+
+<% unless logged_in? %>
+  <p class="description">
+    <a href="/login">Log In</a> or <a href="/signup">Sign Up</a> to get started.
+  </p>
+<% end %>
+
+<h1 class="text-emerald">Popular Shows:</h1>
+
+<div class="row justify-content-center">
+  <% @shows.each do |show| %>
+    <div class="col-auto">
+      <a href="<%= "/shows/#{show.id}" %>">
+        <div class="card mb-2">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-auto">
+                <strong>
+                  <%= show.name %>
+                </strong>
+              </div>
+              <div class="col-auto ml-auto">
+                <div class="text-muted"> <%= "#{show.users_count} users" %> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+      </a>
+  <% end %>
+</div>

@@ -1,0 +1,24 @@
+<% @title = 'Users' %>
+<h1 class="display-4">Users</h1>
+<div class="row">
+  <% @users.each do |user| %>
+    <div class="col-3">
+      <a href="<%= "/users/#{user.slug}" %>">
+        <div class="card mb-2">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-auto">
+                <strong>
+                  <%= user.username %>
+                </strong>
+              </div>
+              <div class="col-auto ml-auto">
+                <div class="text-muted"><%= "#{user.shows.size} shows" %></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  <% end %>
+</div>

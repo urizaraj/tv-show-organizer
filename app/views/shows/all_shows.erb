@@ -1,0 +1,22 @@
+<% @title = 'All Shows' %>
+<h1 class="display-4">All Shows</h1>
+<div class="row">
+  <% @shows.each do |show| %>
+    <div class="col-4 mb-2">
+      <a href="<%= "/shows/#{show.id}" %>">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <strong> <%= show.name %> </strong>
+              </div>
+              <div class="col-auto align-self-end">
+                <span class="text-right text-muted"> <%= show.year %> </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  <% end %>
+</div>

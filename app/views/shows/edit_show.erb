@@ -1,0 +1,25 @@
+<% @title = "#{@show.name} - Edit" %>
+
+<h1 class="display-4"><%= "Edit #{@show.name}" %></h1>
+
+<form action="<%= "/shows/#{@show.id}/edit" %>" method="post">
+  <input type="hidden" name="_method" value="patch"></input>
+  <div class="form-row">
+    <div class="col-md-5 mb-2">
+      <input class="form-control" id="name" type="text" name="show[name]" placeholder="Show Name" value="<%= "#{@show.name}" %>"></input>
+    </div>
+    <div class="col-md-3">
+    
+      <input class="form-control" id="year" type="number" name="show[year]" placeholder="Year" min=1940 max=2200 value="<%= "#{@show.year}" %>"></input>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-8">
+      <input class="form-control" id="year" type="text" name="show[description]" placeholder="Add a description.." value="<%= "#{@show.description}" %>"></input>
+    </div>
+  </div>
+  <br/>
+  <div class="form-group">
+    <input class="btn btn-emerald" id="submit" type="submit" name="submit" value="Update Show"></input>
+  </div>
+</form>

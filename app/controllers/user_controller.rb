@@ -1,7 +1,7 @@
 class UserController < ApplicationController
   get '/signup' do
     redirect to '/' if logged_in?
-    haml :'users/create_user'
+    erb :'users/create_user'
   end
 
   post '/signup' do
@@ -16,7 +16,7 @@ class UserController < ApplicationController
 
   get '/login' do
     redirect to '/' if logged_in?
-    haml :'users/login'
+    erb :'users/login'
   end
 
   post '/login' do
@@ -39,7 +39,7 @@ class UserController < ApplicationController
     redirect to '/login' unless logged_in?
     @user = current_user
     @shows = Show.all.order(:name)
-    haml :'users/manage_shows'
+    erb :'users/manage_shows'
   end
 
   post '/manage' do
@@ -55,12 +55,12 @@ class UserController < ApplicationController
     # @shows = @user.shows.order(:name)
     @shows = @user.user_shows.where(watched: false).map(&:show)
     @watched_shows = @user.user_shows.where(watched: true).map(&:show)
-    haml :'users/user_detail'
+    erb :'users/user_detail'
   end
 
   get '/users' do
     @users = User.all.order(:username)
-    haml :'users/all_users'
+    erb :'users/all_users'
   end
 
   helpers do

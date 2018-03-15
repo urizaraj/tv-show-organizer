@@ -1,0 +1,28 @@
+<% @title = 'Create Show' %>
+
+<h1 class="display-4">Add A Show</h1>
+
+<form action="/shows/new" method="post">
+  <div class="form-row">
+    <div class="col-md-5 mb-2">
+      <input class="form-control" id="name" type="text" name="show[name]" placeholder="Show Name"></input>
+    </div>
+    <div class="col-md-3">
+      <input class="form-control" id="year" type="number" name="show[year]" placeholder="Year" min=1940 max=2200></input>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-8">
+      <input class="form-control" id="year" type="text" name="show[description]" placeholder="Add a description.."></input>
+    </div>
+  </div>
+  <br/>
+  <div class="form-check">
+    <input class="form-check-input" id="add" type="checkbox" name="toadd" checked></input>
+    <label class="form-check-label" for="add"> Add to shows?</label>
+  </div>
+  <br/>
+  <div class="form-group">
+    <input class="btn btn-emerald" id="submit" type="submit" name="submit" value="Create Show"></input>
+  </div>
+</form>

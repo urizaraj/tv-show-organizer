@@ -1,12 +1,12 @@
 class ShowController < ApplicationController
   get '/shows' do
     @shows = Show.all.order(:name)
-    haml :'shows/all_shows'
+    erb :'shows/all_shows'
   end
 
   get '/shows/new' do
     redirect to '/login' unless logged_in?
-    haml :'shows/create_show'
+    erb :'shows/create_show'
   end
 
   post '/shows/new' do
@@ -27,13 +27,13 @@ class ShowController < ApplicationController
     redirect to '/shows' unless @show
     @users = @show.users
     @user_show = current_user_show(@show) if logged_in?
-    haml :'shows/show_detail'
+    erb :'shows/show_detail'
   end
 
   get '/shows/:id/edit' do |id|
     @show = Show.find(id)
     redirect to '/shows' unless @show
-    haml :'shows/edit_show'
+    erb :'shows/edit_show'
   end
 
   patch '/shows/:id/edit' do |id|
